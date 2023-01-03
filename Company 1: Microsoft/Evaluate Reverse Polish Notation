@@ -1,0 +1,44 @@
+/* Author:- Rahul Singh Gurjar 
+Platform :- LeetCode */
+
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> st;
+        int i, n = tokens.size(),s;
+        for(i=0;i<n;i++)
+        {
+            if(tokens[i]!="+" && tokens[i]!="-" && tokens[i]  !="*" && tokens[i]!="/")
+            {
+                st.push(stoi(tokens[i]));
+            }
+            else
+            {
+                int a = st.top();
+                st.pop();
+                int b = st.top();
+                st.pop();
+
+                if(tokens[i]=="+")
+                {
+                     s = b + a;
+                }
+                else if(tokens[i]=="-")
+                {
+                     s = b - a;
+                }
+                else if(tokens[i]=="*")
+                {
+                    s = a * b;
+                }
+                else if(tokens[i]=="/")
+                {
+                     s = b / a;
+                }
+
+                st.push(s);
+            }
+        }
+        return st.top();
+    }
+};
