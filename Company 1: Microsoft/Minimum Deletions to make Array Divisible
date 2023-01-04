@@ -1,0 +1,30 @@
+/*Author :- Rahul Singh Gurjar
+Platform :- LeetCode */
+
+class Solution {
+public:
+    int minOperations(vector<int>& nums, vector<int>& numsDivide) {
+        int n1 = nums.size();
+        int n2 = numsDivide.size();
+        int i,j,f=0,c=0,cmn = numsDivide[0];
+        sort(nums.begin(),nums.end());
+        sort(numsDivide.begin(),numsDivide.end());
+        for(i=1;i<n2;i++)
+        {
+            cmn = __gcd(cmn, numsDivide[i]);
+        }
+        if(nums[0]>cmn)
+        {
+            return -1;
+        }
+        for(i=0;i<n1;i++)
+        {
+            if(cmn%nums[i]==0)
+            {
+                return c;
+            }
+            c++;
+        }
+        return -1;
+    }
+};
