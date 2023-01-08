@@ -1,0 +1,33 @@
+/* Author :- Rahul Singh Gutjar
+Platform :- LeetCode  */
+
+class Solution {
+public:
+    long long mod = 1000000007;
+    int rev(int x)
+    {
+        int r,s=0;
+        while(x>0)
+        {
+            r = x %10;
+            s = s*10 + r;
+            x = x /10;
+        }
+        return s;
+    }
+    int countNicePairs(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        long long i,sum=0,c=0, n = nums.size();
+        for(i=0;i<n;i++)
+        {
+            nums[i] = nums[i] - rev(nums[i]);
+            mp[nums[i]]++;
+        }
+        for(auto it: mp)
+        {
+            c = it.second;
+            sum += c * (c-1) /2;
+        }
+        return sum%mod;
+    }
+};
