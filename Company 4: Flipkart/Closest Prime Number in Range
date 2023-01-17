@@ -1,0 +1,55 @@
+class Solution {
+public:
+    vector<bool>allPrimeNumbers; 
+    void findAllPrime(int n) 
+    {
+        allPrimeNumbers[0] = false;
+        allPrimeNumbers[1] = false;
+
+        for (int i = 2; i*i <= n; i++) 
+        {
+            if (allPrimeNumbers[i] == true)
+             {
+                for (int j = i*i; j <= n; j+=i) 
+                {
+                    allPrimeNumbers[j] = false; 
+                }
+            }
+        }
+    return;
+}
+
+vector<int> closestPrimes(int left, int right) 
+{
+    allPrimeNumbers.resize(right+1, true);
+
+    int diff = INT_MAX, num1 = -1, num2 = -1;
+    findAllPrime(right+1);
+
+    for (int i = left, prev = -1; i<= right; i++) 
+    {
+        if (allPrimeNumbers[i] == true) 
+        {
+            if (prev == -1) 
+            {
+                prev = i;
+            }
+            else 
+            {
+                if (i - prev < diff) 
+                {
+                    diff =  i - prev;
+                    num1 = prev;
+                    num2 = i;
+                    prev = i;
+                }
+                else 
+                {
+                    prev = i;   
+                }
+            }
+        }
+    }
+    return {num1, num2};
+   }
+};
