@@ -1,0 +1,22 @@
+/* Author :- Rahul Singh Gurjar
+Platform :- LeetCode */
+
+class Solution {
+public:
+    int maxConsecutive(int bottom, int top, vector<int>& special) 
+    {
+        sort(special.begin(),special.end());
+        int n = special.size(),i,j=0,c=bottom,s;
+        vector<int> v;
+        for(i=0;i<n;i++)
+        {
+           s = abs(special[i]-c);
+           v.push_back(s);
+           c = special[i] + 1; 
+        }
+        v.push_back(top - c + 1);
+        int res = *max_element(v.begin(),v.end());
+
+        return res;
+    }
+};
