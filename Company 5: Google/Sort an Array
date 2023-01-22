@@ -1,0 +1,21 @@
+/* Author :- Rahul Singh Gurjar
+Platform :- LeetCode  */
+
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        priority_queue<int,vector<int>, greater<int> > pq;
+        int n = nums.size(),i;
+        for(i=0;i<n;i++)
+        {
+            pq.push(nums[i]);
+        }
+        vector<int> v;
+        while(!pq.empty())
+        {
+            v.push_back(pq.top());
+            pq.pop();
+        }
+        return v;
+    }
+};
